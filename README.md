@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # real-world-vue
 
 ## Project setup
@@ -22,3 +23,7 @@ npm run lint
 
 ### Customize configuration
 See [Configuration Reference](https://cli.vuejs.org/config/).
+=======
+# VueTestApp
+Vue test application
+>>>>>>> 68f142cbe13ae80fc54812ac611cc9dcd9193406
