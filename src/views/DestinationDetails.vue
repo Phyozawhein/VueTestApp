@@ -15,27 +15,38 @@
       <div class="cards">
         <div
           class="card"
+          id="experience"
           v-for="experience in destination.experiences"
           :key="experience.slug"
         >
-          <img
-            :src="require(`@/assets/${experience.image}`)"
-            :alt="experience.name"
-          />
-          <span class="card_text">
-            {{ experience.name }}
-          </span>
+          <router-link
+            :to="{
+              name: 'experienceDetails',
+              params: { experienceSlug: experience.slug },
+              hash: '#experience'
+            }"
+          >
+            <img
+              :src="require(`@/assets/${experience.image}`)"
+              :alt="experience.name"
+            />
+            <span class="card_text">
+              {{ experience.name }}
+            </span>
+          </router-link>
         </div>
       </div>
-      <router-view :key="$route.path"/>
+      <router-view :key="$route.path" />
     </section>
   </div>
 </template>
 
 <script>
 import store from "./store";
+
 export default {
   name: "DestinationDetails",
+  components: {},
   data() {
     return {};
   },
@@ -83,11 +94,15 @@ p {
 .card_text {
   position: absolute;
   top: 50%;
-  left: 50%;
+  left: 20%;
   transform: transalte(-50%, -50%);
   color: white;
   font-size: 25px;
   font-weight: bold;
   text-decoration: none;
+}
+
+.experiences {
+  padding: 40px 0px;
 }
 </style>

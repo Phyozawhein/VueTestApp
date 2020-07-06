@@ -1,5 +1,5 @@
 <template>
-  <div id="app">
+  <div>
     <div id="nav">
       <ul class="nav-links">
         <li class="links">
@@ -22,6 +22,9 @@
             Travel
           </router-link>
         </li>
+        <li class="links">
+          <router-link to="/user"> Dashboard </router-link>
+        </li>
       </ul>
     </div>
   </div>
@@ -39,9 +42,15 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
 #nav {
-  padding: 30px;
+  display: flex;
+  align-items: center;
+  position: sticky;
+  top: 0;
+  background-color: white;
+  border-bottom: 1px solid grey;
+  z-index: 1;
 }
 
 #nav a {

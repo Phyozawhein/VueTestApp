@@ -3,13 +3,6 @@
     <h1>Experiences</h1>
     <h2>{{ experience.name }}</h2>
     <div class="experience-details">
-      <router-link
-        :to="{
-          name: 'experienceDetails',
-          params: { experienceSlug: experience.slug }
-        }"
-        }
-      ></router-link>
       <img
         :src="require(`@/assets/${experience.image}`)"
         :alt="experience.name"
@@ -26,7 +19,7 @@ export default {
       type: String,
       required: true
     },
-    experienceSlugh: {
+    experienceSlug: {
       type: String,
       required: true
     }
@@ -38,7 +31,7 @@ export default {
       );
     },
     experience() {
-      return store.destination.experience.find(
+      return this.destination.experiences.find(
         experience => experience.slug === this.experienceSlug
       );
     }
@@ -49,6 +42,7 @@ export default {
 .experience-details {
   display: flex;
   justify-content: space-between;
+  padding: 40px 0;
 }
 p {
   margin: 0 40px;

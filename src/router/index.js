@@ -1,6 +1,7 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
 import Home from "../views/Home.vue";
+import store from "../store";
 
 Vue.use(VueRouter);
 const routes = [
@@ -49,16 +50,70 @@ const routes = [
         props: true,
         component: () =>
           import(
-            /* webpackChunkName: "Destination Details" */ "../views/ExperienceDetails"
+            /* webpackChunkName: "Experience Details" */ "../views/ExperienceDetails"
           )
       }
-    ]
+    ],
+    beforeEnter: (to, from, next) => {
+      const exist = store.destinations.find(
+        destintation => destintation.slug === to.params.slug
+      );
+      if (exist) {
+        next();
+      } else {
+        next({ name: "notFound" });
+      }
+    }
+  },
+  {
+    path: "/user",
+    name: "user",
+    component: () => import(/* webpackChunkName: "User" */ "../views/User"),
+    meta: { requiresAuth: true }
+  },
+  {
+    path: "/login",
+    name: "login",
+    component: () => import(/* webpackChunkName: "Login" */ "../views/Login")
+  },
+  {
+    path: "/404",
+    alias: "*",
+    name: "notFound",
+    component: () =>
+      import(/* webpackChunkName: "Not Found" */ "../views/NotFound")
   }
 ];
 
 const router = new VueRouter({
   mode: "history",
+  scrollBehavior(to, from, savedPositon) {
+    if (savedPositon) {
+      return savedPositon;
+    } else {
+      const position = {};
+      if (to.hash) {
+        position.selector = to.hash;
+        if (to.hash === "#experience") {
+          position.offset = { y: 140 };
+        }
+        return false;
+      }
+    }
+  },
   routes
+});
+
+router.beforeEach((to, from, next) => {
+  if (to.matched.some(record => record.meta.requiresAuth)) {
+    if (!store.user) {
+      next({ name: "login" });
+    } else {
+      next();
+    }
+  } else {
+    next();
+  }
 });
 
 export default router;
