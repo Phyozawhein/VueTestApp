@@ -23,17 +23,25 @@ export default {
   methods: {
     Login() {
       store.user = this.username;
-      this.$router.push('/user');
+      //this.$router.push("/user");
+      const redirectPath = this.$route.query.redirect || "/";
+      this.$router.push(redirectPath);
     }
   }
 };
 </script>
 
 <style>
-.form{
-    display:flex;
-    flex-direction: column;
-    max-width: 400px;
-    margin: 0 auto;
+.form {
+  display: flex;
+  flex-direction: column;
+  max-width: 400px;
+  margin: 0 auto;
+}
+
+.btn {
+  background-color: green;
+  color: white;
+  padding: 10px;
 }
 </style>
