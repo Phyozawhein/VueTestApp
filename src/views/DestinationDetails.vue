@@ -22,8 +22,7 @@
           <router-link
             :to="{
               name: 'experienceDetails',
-              params: { experienceSlug: experience.slug },
-              hash: '#experience'
+              params: { experienceSlug: experience.slug }
             }"
           >
             <img

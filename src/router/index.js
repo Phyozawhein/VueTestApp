@@ -84,6 +84,11 @@ const routes = [
     meta: { requiresAuth: true }
   },
   {
+    path: "/vuex",
+    name: "vuex",
+    component: () => import(/* webpackChunkName "Vuex" */ "../views/Vuextest")
+  },
+  {
     path: "/404",
     alias: "*",
     name: "notFound",

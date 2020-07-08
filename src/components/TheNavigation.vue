@@ -25,6 +25,9 @@
         <li class="links">
           <router-link to="/user"> Dashboard </router-link>
         </li>
+        <li class="links">
+          <router-link to="/vuex">Vuex</router-link>
+        </li>
       </ul>
     </div>
   </div>
